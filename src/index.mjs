@@ -9,8 +9,13 @@ import cors from "cors"
 
 const app = express();
 //database connection
-mongoose.connect("mongodb://localhost/Kulima")
-.then(()=>{console.log(`..Connected to database..`)})
+const dbUrl = "mongodb+srv://bscinf2421:vmCpj6cMhCpahBLI@cluster0.3uen4.mongodb.net/KulimaDatabase?retryWrites=true&w=majority&appName=Cluster0";
+const connectionParameters = () => ({
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+mongoose.connect(dbUrl,connectionParameters())
+.then(()=>{console.log(`Connected to Kulima-World-Database`)})
 .catch((error)=>{console.log(`error${error}`)});
 app.use(cors({
     origin: '*',
@@ -35,12 +40,10 @@ app.use(routerIndex);
 
 const PORT = process.env.PORT || 3000
 app.listen(PORT,()=>{
-    console.log(`..Connected on port: ${PORT}..`);
+    console.log(`Connected on port: ${PORT}..`);
 })
 
 //main route
 app.get("/",(request,response) => {
-    request.session.visited = true
-    console.log(request.sessionID);
-    response.send({"msg":"Hi from Express sever"})
+    response.status(200).send({mes:"Hello from Kulima world"})
 }) 
