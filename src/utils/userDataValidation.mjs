@@ -1,4 +1,4 @@
-const userValidationSchemer = {
+const userDataValidation = {
     username:{
         isString:{
             errorMessage:"Username must be a string"
@@ -17,7 +17,7 @@ const userValidationSchemer = {
             errorMessage:"firstname must be a string"
         },
         isLength:{
-            options:{min:5,max:255},
+            options:{min:1,max:255},
             errorMessage:"firstname must be atleast 5 charecters"
         },
         notEmpty:{
@@ -29,7 +29,7 @@ const userValidationSchemer = {
             errorMessage:"lastname must be a string"
         },
         isLength:{
-            options:{min:5,max:255},
+            options:{min:1,max:255},
             errorMessage:"lastname must be atleast 5 charecters"
         },
         notEmpty:{
@@ -40,7 +40,7 @@ const userValidationSchemer = {
     password:{
         isLength:{
             options:{
-                min:8,
+                min:4,
                 max:255
             },
             errorMessage:"Password must be atleast 8 charecters"
@@ -49,7 +49,10 @@ const userValidationSchemer = {
             errorMessage:"Psswordcant be empty"
         }
 
+    },
+    email: {
+        isString: true
     }
 }
 
-export default userValidationSchemer;
+export default userDataValidation;
